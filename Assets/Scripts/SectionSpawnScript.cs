@@ -5,7 +5,9 @@ using UnityEngine;
 public class SectionSpawnScript : MonoBehaviour {
 
 	public Transform pivot;
-	public GameObject[] obj;
+	public GameObject[] sections;
+	public GameObject introSection;
+	public bool inIntro = true;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +15,15 @@ public class SectionSpawnScript : MonoBehaviour {
 	}
 
 	void Spawn() {
-		Instantiate (obj [Random.Range (0, obj.Length)], pivot.position, Quaternion.identity);
+		if (inIntro) {
+			SpawnObject (introSection);
+		} else {
+			SpawnObject (sections [Random.Range (0, sections.Length)]);
+		}
+	}
+
+	private void SpawnObject(GameObject objectToSpawn) {
+		Instantiate (objectToSpawn, pivot.position, Quaternion.identity);
 	}
 
 	public void SignalSpawn() {
