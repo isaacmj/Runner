@@ -17,7 +17,7 @@ public class StartGameScript : MonoBehaviour {
 	void Update () {
 		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
 			spawnScript.inIntro = false;
-			GetComponent<ScoreScript>().inIntro = false;
+			GetComponent<ScoreScript>().active = true;
 			foreach (Text textToHide in textsToHide) {
 				textToHide.enabled = false;
 			}

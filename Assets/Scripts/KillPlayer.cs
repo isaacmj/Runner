@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KillPlayer : MonoBehaviour {
+	private EndGameScript endGameScript;
+
+	void Start() {
+		endGameScript = (EndGameScript) FindObjectOfType (typeof(EndGameScript));
+	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			Application.LoadLevel (1);
-			return;
+			Destroy (other.transform.root.gameObject);
+			endGameScript.SignalGameOver ();
 		}
 	}
 }

@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour {
 	public Text text;
-	public bool inIntro = true;
+	public bool active = false;
 	private float playerScore = 0;
 	
 	// Update is called once per frame
 	void Update () {
-		if (!inIntro) {
+		if (active) {
 			playerScore += Time.deltaTime;
 			text.text = "Score: " + getDisplayableScore ();
 		}
