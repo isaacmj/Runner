@@ -13,6 +13,8 @@ public class KillPlayer : MonoBehaviour {
 		if (other.tag == "Player") {
 			Destroy (other.transform.root.gameObject);
 			endGameScript.SignalGameOver ();
+		} else if (other.tag == "Shot") {
+			Destroy (other.gameObject);
 		}
 	}
 }
