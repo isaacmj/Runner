@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OscillateMovement : MonoBehaviour {
-	private float startPositionY;
+	private Vector3 parentOffset;
 	public float magnitude;
 	public float frequency;
 
 	// Use this for initialization
 	void Start () {
-		startPositionY = transform.position.y;		
+		parentOffset = transform.parent.transform.position - transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float yPosition = startPositionY + Mathf.Sin (Time.time * frequency) * magnitude;
-		transform.position = new Vector3 (transform.position.x, yPosition, transform.position.z);
+		Vector3 relativePosition = transform.parent.transform.position - parentOffset;
+		float yPosition = relativePosition.y + Mathf.Sin (Time.time * frequency) * magnitude;
+		transform.position = new Vector3 (relativePosition.x, yPosition, relativePosition.z);
 	}
 }
